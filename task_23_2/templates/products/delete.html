@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load img_filters %}
+<title>
+  {% block title %}
+    Skystore |
+    {% if object %}
+      Редактирование
+    {% else %}
+      Создание
+    {% endif %}
+  {% endblock %}
+</title>
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-6">
+        <form class="row" method="post">
+          <div class="card">
+            <p class="card-text">Действительно ли хотите удалить товар {{ product.title }}?</p>
+            <div class="card-body">{% csrf_token %}</div>
+            <button type="submit" class="btn btn-danger btn-sm">Да, удалить</button>
+            <a class="btn btn-primary btn-sm"
+               role="button"
+               href="{% url 'product_detail' product.id %}">Нет, вернуться назад</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
