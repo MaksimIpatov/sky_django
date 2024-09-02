@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+<title>
+  {% block title %}
+    Skystore |
+    {% if object %}
+      Редактирование
+    {% else %}
+      Создание
+    {% endif %}
+  {% endblock %}
+</title>
+{% block content %}
+  <div class="container">
+    {% if object %}
+      <h1 class="mb-5 text-center">Редактировать</h1>
+    {% else %}
+      <h1 class="mb-5 text-center">Создать</h1>
+    {% endif %}
+    <form class="row" method="post" enctype="multipart/form-data">
+      <div class="col-3 col-md-6 col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">
+            {% if object %}
+              Сохранить
+            {% else %}
+              Создать
+            {% endif %}
+          </button>
+        </div>
+      </div>
+      {% if object %}
+        <div class="col-3 col-md-6 col-sm-12">
+          <div class="card">
+            <p class=" p-3 card-text">Версия:</p>
+            <div class="card-body">
+              {{ formset.management_form }}
+              {% for form in formset.forms %}
+                {{ form.as_p }}
+                {% if not forloop.last %}<hr>{% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </form>
+  </div>
+{% endblock %}

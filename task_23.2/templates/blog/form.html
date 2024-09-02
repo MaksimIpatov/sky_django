@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+<title>
+  {% block title %}
+    Skystore |
+    {% if object %}
+      Редактирование
+    {% else %}
+      Создание
+    {% endif %}
+  {% endblock %}
+</title>
+{% block content %}
+  <div class="container">
+    <h1 class="mb-5 text-center">Редактировать пост</h1>
+    <div class="col-lg-3 col-md-6 col-sm-12">
+      <form class="row" method="post">
+        <div class="card">
+          <div class="card-body">
+            {% csrf_token %}
+            {{ form.as_p }}
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm">
+            {% if object %}
+              Сохранить
+            {% else %}
+              Создать
+            {% endif %}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}
