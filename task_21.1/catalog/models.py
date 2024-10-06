@@ -99,6 +99,9 @@ class Blog(models.Model):
         unique=True,
         blank=True,
     )
+    description = models.TextField(
+        "Описание",
+    )
     preview = models.ImageField(
         "Превью",
         upload_to="previews/%Y%m/",

@@ -64,6 +64,10 @@ class BlogListView(ListView):
     model = Blog
     template_name = "blog/list.html"
 
+    def get_queryset(self):
+        queryset = super().get_queryset().filter(is_published=True)
+        return queryset
+
 
 class BlogDetailView(DetailView):
     model = Blog

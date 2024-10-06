@@ -36,6 +36,13 @@ class BlogAdmin(admin.ModelAdmin):
         "slug",
         "created_at",
     )
+    fields = (
+        "title",
+        "description",
+        "preview",
+        "views",
+        "is_published",
+    )
     list_display_links = ("title",)
     list_filter = ("is_published",)
     search_fields = ("title",)
