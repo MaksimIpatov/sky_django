@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from catalog.models import Contact, Product
 
@@ -9,7 +9,7 @@ def index(request):
 
 
 def product_detail(request, pk):
-    product = Product.objects.get(pk=pk)
+    product = get_object_or_404(Product, pk=pk)
     data = {
         "product": product
     }
